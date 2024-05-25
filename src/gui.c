@@ -634,22 +634,6 @@ static void create_menu_screen(void) {
         ui_menu_set_load_page_event(menu, cont, ps2_switch_warn);
     }
 
-    /* freepsxboot integration for ps1 */
-    lv_obj_t *freepsxboot_page = ui_menu_subpage_create(menu, "FreePSXBoot");
-    {
-        cont = ui_menu_cont_create_nav(freepsxboot_page);
-        ui_label_create_grow(cont, "Autoboot");
-        ui_label_create(cont, "Yes");
-
-        cont = ui_menu_cont_create_nav(freepsxboot_page);
-        ui_label_create_grow(cont, "Model");
-        ui_label_create(cont, "1001v3");
-
-        cont = ui_menu_cont_create_nav(freepsxboot_page);
-        ui_label_create_grow(cont, "Slot");
-        ui_label_create(cont, "Slot 1");
-    }
-
     /* display / auto off submenu */
     lv_obj_t *auto_off_page = ui_menu_subpage_create(menu, "Auto off");
     {
@@ -731,19 +715,6 @@ static void create_menu_screen(void) {
         ui_set_display_vcomh(settings_get_display_vcomh());
     }
 
-    /* ps1 */
-    lv_obj_t *ps1_page = ui_menu_subpage_create(menu, "PS1 Settings");
-    {
-        cont = ui_menu_cont_create_nav(ps1_page);
-        ui_label_create_grow(cont, "FreePSXBoot");
-        ui_label_create(cont, ">");
-        ui_menu_set_load_page_event(menu, cont, freepsxboot_page);
-
-        cont = ui_menu_cont_create_nav(ps1_page);
-        ui_label_create_grow_scroll(cont, "Imitate a PocketStation");
-        ui_label_create(cont, "No");
-    }
-
     /* ps2 */
     lv_obj_t *ps2_page = ui_menu_subpage_create(menu, "PS2 Settings");
     {
@@ -799,11 +770,6 @@ static void create_menu_screen(void) {
         ui_label_create_grow(cont, "Mode");
         ui_label_create(cont, (settings_get_mode() == MODE_PS1) ? "PS1" : "PS2");
         ui_menu_set_load_page_event(menu, cont, mode_page);
-
-        cont = ui_menu_cont_create_nav(main_page);
-        ui_label_create_grow(cont, "PS1 Settings");
-        ui_label_create(cont, ">");
-        ui_menu_set_load_page_event(menu, cont, ps1_page);
 
         cont = ui_menu_cont_create_nav(main_page);
         ui_label_create_grow(cont, "PS2 Settings");
