@@ -945,6 +945,7 @@ void gui_task(void) {
                 case PS1_CM_STATE_BOOT:
                     lv_label_set_text(scr_main_idx_lbl, "BOOT");
                     break;
+                case PS1_CM_STATE_NAMED:
                 case PS1_CM_STATE_GAMEID:
                     lv_label_set_text(scr_main_idx_lbl, folder_name);
                     break;
@@ -964,6 +965,9 @@ void gui_task(void) {
             );
             if (!card_name[0] && cardman_state == PS1_CM_STATE_GAMEID) {
                 game_db_get_current_name(card_name);
+            }
+            if (!card_name[0] && cardman_state == PS1_CM_STATE_NAMED) {
+                game_db_get_game_name(folder_name, card_name);
             }
 
             if (card_name[0]) {
@@ -1004,6 +1008,7 @@ void gui_task(void) {
                 case PS2_CM_STATE_BOOT:
                     lv_label_set_text(scr_main_idx_lbl, "BOOT");
                     break;
+                case PS2_CM_STATE_NAMED:
                 case PS2_CM_STATE_GAMEID:
                     lv_label_set_text(scr_main_idx_lbl, folder_name);
                     break;
@@ -1023,6 +1028,9 @@ void gui_task(void) {
             );
             if (!card_name[0] && cardman_state == PS2_CM_STATE_GAMEID) {
                 game_db_get_current_name(card_name);
+            }
+            if (!card_name[0] && cardman_state == PS2_CM_STATE_NAMED) {
+                game_db_get_game_name(folder_name, card_name);
             }
 
             if (card_name[0]) {
