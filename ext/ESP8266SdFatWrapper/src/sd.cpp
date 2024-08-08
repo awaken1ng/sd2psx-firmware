@@ -125,3 +125,7 @@ extern "C" int sd_iterate_dir(int dir, int it) {
 extern "C" size_t sd_get_name(int fd, char* name, size_t size) {
     return files[fd].getName(name, size);
 }
+
+extern "C" bool sd_is_dir(int fd) {
+    return files[fd].isDir();
+}
